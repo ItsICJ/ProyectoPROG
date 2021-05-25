@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 
 public class PantallaPrincipal extends JPanel {
@@ -18,6 +19,10 @@ public class PantallaPrincipal extends JPanel {
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.SOUTH);
+		panel.setBackground(Color.DARK_GRAY);
+		
+		JPanel panel_1 = new JPanel();
+		add(panel_1, BorderLayout.CENTER);
 		
 		// Botones
 		
@@ -29,6 +34,7 @@ public class PantallaPrincipal extends JPanel {
 		});
 		botonSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel.add(botonSalir);
+		botonSalir.setBackground(Color.gray);
 		
 		JButton botonLogin = new JButton("Iniciar Sesión");
 		botonLogin.addMouseListener(new MouseAdapter() {
@@ -39,6 +45,7 @@ public class PantallaPrincipal extends JPanel {
 		});
 		botonLogin.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel.add(botonLogin);
+		botonLogin.setBackground(Color.gray);
 		
 		JButton botonRegistro = new JButton("Registrarse");
 		botonRegistro.addMouseListener(new MouseAdapter() {
@@ -49,6 +56,8 @@ public class PantallaPrincipal extends JPanel {
 		});
 		botonRegistro.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel.add(botonRegistro);
+		botonRegistro.setBackground(Color.gray);
+		
 		
 	}
 
