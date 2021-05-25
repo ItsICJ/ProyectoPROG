@@ -8,17 +8,19 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 
 public class PantallaPrincipal extends JPanel {
+	
 	private Ventana ventana;
 	private final JButton botonSalir = new JButton("Salir");
-	/**
-	 * Create the panel.
-	 */
+
 	public PantallaPrincipal(Ventana v) {
 		ventana = v;
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.SOUTH);
+		
+		// Botones
+		
 		botonSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -48,7 +50,6 @@ public class PantallaPrincipal extends JPanel {
 		botonRegistro.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel.add(botonRegistro);
 		
-
 	}
 
 }

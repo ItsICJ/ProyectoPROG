@@ -1,5 +1,10 @@
 package interfaces;
 
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 
@@ -14,11 +19,20 @@ public class Ventana extends JFrame {
 	 */
 	public Ventana() {
 		this.principal = new PantallaPrincipal(this);
+		this.setSize(450,400);
+		this.setLocation(600,300);
+		try {
+			Image img = ImageIO.read(new File("rose.png"));
+			this.setIconImage(img);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.setContentPane(this.principal);
 		this.setTitle("Sistema de Reserva de Vuelos");
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		
 	}
 	
 	public void irASeleccionVuelo() {
