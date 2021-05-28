@@ -34,7 +34,7 @@ public class PantallaPrincipal extends JPanel {
 		});
 		botonSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel.add(botonSalir);
-		botonSalir.setBackground(Color.gray);
+		botonSalir.setBackground(Color.red);
 		
 		JButton botonLogin = new JButton("Iniciar Sesión");
 		botonLogin.addMouseListener(new MouseAdapter() {
@@ -45,7 +45,7 @@ public class PantallaPrincipal extends JPanel {
 		});
 		botonLogin.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel.add(botonLogin);
-		botonLogin.setBackground(Color.gray);
+		botonLogin.setBackground(Color.cyan);
 		
 		JButton botonRegistro = new JButton("Registrarse");
 		botonRegistro.addMouseListener(new MouseAdapter() {
@@ -56,7 +56,7 @@ public class PantallaPrincipal extends JPanel {
 		});
 		botonRegistro.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel.add(botonRegistro);
-		botonRegistro.setBackground(Color.gray);
+		botonRegistro.setBackground(Color.yellow);
 		
 		
 	}

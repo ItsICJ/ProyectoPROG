@@ -5,9 +5,21 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Random;
+
 import javax.swing.SwingConstants;
+
+import clases.Vuelo;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -46,6 +58,35 @@ public class PantallaSeleccionVuelo extends JPanel {
 		panel.add(botonAtras);
 		
 		JButton botonSeleccion = new JButton("Seleccionar");
+		botonSeleccion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Random ran = new Random();
+				if (textFieldOrigen.getText().isBlank()) {
+					JOptionPane.showMessageDialog(ventana, "Debe indicar la ciudad de origen","No se pudo cargar resultados",JOptionPane.ERROR_MESSAGE);
+				} else {// Hacer consulta de vuelos
+					try {
+						Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectoprog",
+								"root","ithinkaboutyou");
+						String consulta = "select * from Vuelo where aeropuertoOrigen = '"+textFieldOrigen.getText()+"'";
+						Statement smt = conexion.createStatement();
+						
+						ResultSet consultaVuelo = smt.executeQuery(consulta);
+						if (consultaVuelo.next()) {
+							ventana.irAPantallaListadoVuelos();
+						} else {
+							JOptionPane.showMessageDialog(ventana, "Datos incorrectos","no se pudo mostrar el listado",
+									 JOptionPane.ERROR_MESSAGE);
+						}
+						smt.close();
+						conexion.close();
+					} catch (SQLException e1) {
+						 JOptionPane.showMessageDialog(ventana, e1.getMessage(),"No se pudo mostrar el listado",
+								 JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		});
 		botonSeleccion.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel.add(botonSeleccion);
 		
@@ -69,7 +110,7 @@ public class PantallaSeleccionVuelo extends JPanel {
 		
 		JLabel etiquetaOrigen = new JLabel("Ciudad de origen:");
 		etiquetaOrigen.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		etiquetaOrigen.setBounds(76, 91, 139, 14);
+		etiquetaOrigen.setBounds(85, 91, 130, 14);
 		panel_1.add(etiquetaOrigen);
 		
 		textFieldOrigen = new JTextField();

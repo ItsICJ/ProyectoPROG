@@ -2,6 +2,8 @@ package interfaces;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -21,12 +23,13 @@ import java.awt.event.MouseEvent;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class PantallaLogin extends JPanel {
 	
-	private JTextField textFieldUsuario;
+	private JTextField textFieldEmail;
 	private JPasswordField passwordField;
 	private Ventana ventana;
 
@@ -37,6 +40,7 @@ public class PantallaLogin extends JPanel {
 		
 		JPanel panelBotones = new JPanel();
 		add(panelBotones, BorderLayout.SOUTH);
+		panelBotones.setBackground(Color.darkGray);
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.CENTER);
@@ -49,10 +53,10 @@ public class PantallaLogin extends JPanel {
 		etiquetaTitulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		add(etiquetaTitulo, BorderLayout.NORTH);
 		
-		JLabel etiquetaUsuario = new JLabel("Nombre de usuario:");
-		etiquetaUsuario.setBounds(155, 60, 129, 19);
-		etiquetaUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		panel.add(etiquetaUsuario);
+		JLabel etiquetaEmail = new JLabel("Correo electrónico:");
+		etiquetaEmail.setBounds(155, 60, 129, 19);
+		etiquetaEmail.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panel.add(etiquetaEmail);
 		
 		JLabel etiquetaContraseña = new JLabel("Contraseña:");
 		etiquetaContraseña.setBounds(180, 139, 79, 19);
@@ -65,14 +69,15 @@ public class PantallaLogin extends JPanel {
 		passwordField.setBounds(120, 163, 200, 20);
 		panel.add(passwordField);
 		
-		textFieldUsuario = new JTextField();
-		textFieldUsuario.setBounds(120, 84, 200, 20);
-		panel.add(textFieldUsuario);
-		textFieldUsuario.setColumns(10);
+		textFieldEmail = new JTextField();
+		textFieldEmail.setBounds(120, 84, 200, 20);
+		panel.add(textFieldEmail);
+		textFieldEmail.setColumns(10);
 		
 		// Botones
 		
 		JButton botonSalir = new JButton("Atrás");
+		botonSalir.setBackground(Color.red);
 		botonSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -83,10 +88,11 @@ public class PantallaLogin extends JPanel {
 		panelBotones.add(botonSalir);
 		
 		JButton botonIniciar = new JButton("Entrar");
+		botonIniciar.setBackground(Color.green);
 		botonIniciar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				 if (textFieldUsuario.getText().isBlank()||passwordField.getPassword().toString().isBlank()) {
+				 if (textFieldEmail.getText().isBlank()||passwordField.getPassword().toString().isBlank()) {
 					 JOptionPane.showMessageDialog(ventana, "Todos los campos deben estar llenos","No se pudo iniciar sesión",
 							 JOptionPane.ERROR_MESSAGE);
 				 } else {//Se puede iniciar sesión
@@ -95,14 +101,19 @@ public class PantallaLogin extends JPanel {
 						 
 						 Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectoprog",
 								 "root","ithinkaboutyou");
+						 String consulta = "select nombre,apellido1 from Cliente where email = '"+textFieldEmail.getText()+"'"
+							 		+ " and contraseña = '"+new String (passwordField.getPassword())+"'";
 						 Statement smt = conexion.createStatement();
-						 smt.execute("select nombre,apellido1 from Cliente where usuario = '"+textFieldUsuario.getText()+"'"
-						 		+ " and contraseña = '"+passwordField.getPassword().toString()+"'");
-						 
+						
+						 ResultSet consultaUsuario =smt.executeQuery(consulta);
+						 if(consultaUsuario.next()) {
 						 JOptionPane.showMessageDialog(ventana, "Inicio de sesión realizado","¡Hola de nuevo!",
-								 JOptionPane.OK_OPTION);
-						 
+								 JOptionPane.YES_NO_CANCEL_OPTION);
 						 ventana.irASeleccionVuelo();
+						 } else {
+							 JOptionPane.showMessageDialog(ventana, "Usuario y/o contraseña incorrectos","No se pudo iniciar sesión",JOptionPane.ERROR_MESSAGE);
+						 }
+						 
 						 smt.close();
 						 conexion.close();
 						 
@@ -114,16 +125,7 @@ public class PantallaLogin extends JPanel {
 		});
 		botonIniciar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panelBotones.add(botonIniciar);
-
 		
-
-		
-		
-
-		
-
-		
-
 		
 	}
 

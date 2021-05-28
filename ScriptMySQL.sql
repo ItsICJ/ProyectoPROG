@@ -22,7 +22,7 @@ create table Cliente (
     apellido1 varchar(25),
     apellido2 varchar(25),
     direccion varchar(50),
-    email varchar(25),
+    email varchar (25),
     dni varchar(9) primary key,
     contraseña varchar(25)
 );
@@ -52,5 +52,27 @@ create table Vuelo (
     foreign key (aerolinea) references Aerolinea(nombre),
     foreign key (avion) references Avion(matricula) 
 );
-
-insert into Cliente values('Pepe','Pepito','Castillo','Grande','Calle 1, pueblo 2','pepe@hotmail.com','12345678Z','1234')
+# Prueba con primer usuario
+insert into Cliente values('Pepe','Pepito','Castillo','Grande','Calle 1, pueblo 2','pepe@hotmail.com','12345678Z','1234');
+# Insertar diferentes aerolíneas
+insert into Aerolinea (nombre) values ('Iberia');
+insert into Aerolinea (nombre) values ('Air Europa');
+insert into Aerolinea (nombre) values ('Air France');
+insert into Aerolinea (nombre) values ('Level');
+insert into Aerolinea (nombre) values ('Ryanair');
+insert into Aerolinea (nombre) values ('Volotea');
+insert into Aerolinea (nombre) values ('Vueling');
+insert into Aerolinea (nombre) values ('TAP Air Portugal');
+insert into Aerolinea (nombre) values ('Tui Airways');
+insert into Aerolinea (nombre) values ('Wizz Air');
+# Insertar datos de los vuelos para consultarlos
+insert into Vuelo (aerolinea, fecha, codVuelo, aeropuertoOrigen, aeropuertoDestino) values ('Iberia','2021-07-28','508','Málaga','Madrid');
+insert into Vuelo (aerolinea, fecha, codVuelo, aeropuertoOrigen, aeropuertoDestino) values ('Iberia','2021-06-01','895','Málaga','París');
+insert into Vuelo (aerolinea, fecha, codVuelo, aeropuertoOrigen, aeropuertoDestino) values ('Iberia','2021-10-09','885','Barcelona','Bruselas');
+insert into Vuelo (aerolinea, fecha, codVuelo, aeropuertoOrigen, aeropuertoDestino) values ('Level','2021-12-30','484','Madrid','Berlín');
+insert into Vuelo (aerolinea, fecha, codVuelo, aeropuertoOrigen, aeropuertoDestino) values ('Iberia','2021-06-09','154','Málaga','Roma');
+insert into Vuelo (aerolinea, fecha, codVuelo, aeropuertoOrigen, aeropuertoDestino) values ('Iberia','2021-11-22','784','Málaga','Moscú');
+insert into Vuelo (aerolinea, fecha, codVuelo, aeropuertoOrigen, aeropuertoDestino) values ('Level','2021-10-21','598','Gibraltar','Barcelona');
+insert into Vuelo (aerolinea, fecha, codVuelo, aeropuertoOrigen, aeropuertoDestino) values ('Vueling','2021-07-11','511','Málaga','Londres');
+insert into Vuelo (aerolinea, fecha, codVuelo, aeropuertoOrigen, aeropuertoDestino) values ('Air Europa','2021-06-19','489','Gibraltar','Londres');
+insert into Vuelo (aerolinea, fecha, codVuelo, aeropuertoOrigen, aeropuertoDestino) values ('Air Europa','2021-09-13','689','Madrid','Tokio');

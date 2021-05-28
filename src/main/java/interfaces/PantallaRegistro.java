@@ -2,6 +2,8 @@ package interfaces;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -40,10 +42,12 @@ public class PantallaRegistro extends JPanel {
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.SOUTH);
+		panel.setBackground(Color.DARK_GRAY);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(null);
+		
 		
 		// Etiquetas
 		
@@ -137,6 +141,7 @@ public class PantallaRegistro extends JPanel {
 		// Botones
 		
 		JButton botonAtras = new JButton("Atrás");
+		botonAtras.setBackground(Color.red);
 		botonAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -147,6 +152,7 @@ public class PantallaRegistro extends JPanel {
 		panel.add(botonAtras);
 		
 		JButton botonRegistro = new JButton("Registro");
+		botonRegistro.setBackground(Color.green);
 		botonRegistro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -169,14 +175,14 @@ public class PantallaRegistro extends JPanel {
 							+ textFieldUsuario.getText() + "','" + textFieldApellido1.getText() + "','"
 							+ textFieldApellido2.getText() +"','" + textFieldDireccion.getText() +"','"
 							+ textFieldEmail.getText() + "','" + textFieldDni.getText() + "','"
-							+ passwordField.getPassword().toString() +"')");
+							+ new String (passwordField.getPassword()) +"')");
 					JOptionPane.showMessageDialog(ventana, "Usuario registrado correctamente", "¡Bienvenido/a!",
-							JOptionPane.OK_OPTION);
+							JOptionPane.YES_NO_CANCEL_OPTION);
 
-					
+					ventana.irASeleccionVuelo();
 					smt.close();
 					conexion.close();
-					ventana.irASeleccionVuelo();					
+										
 					} catch (SQLException e1) {
 						JOptionPane.showMessageDialog(ventana, e1.getMessage(),"No se pudo registrar",JOptionPane.ERROR_MESSAGE);
 					}

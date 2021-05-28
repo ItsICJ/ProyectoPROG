@@ -8,6 +8,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
+import clases.Vuelo;
+
 
 public class Ventana extends JFrame {
 
@@ -15,6 +17,8 @@ public class Ventana extends JFrame {
 	private PantallaRegistro registro;
 	private PantallaSeleccionVuelo seleccionVuelo;
 	private PantallaPrincipal principal;
+	private PantallaListadoVuelos listadoVuelos;
+	protected Vuelo vuelo;
 	/**
 	 * Create the frame.
 	 */
@@ -40,8 +44,9 @@ public class Ventana extends JFrame {
 		if (this.seleccionVuelo == null) {
 			this.seleccionVuelo = new PantallaSeleccionVuelo(this);
 		}
-		if (login != null) {this.registro.setVisible(false);}
+		if (registro != null) {this.registro.setVisible(false);}
 		if (login != null) {this.login.setVisible(false);}
+		if (listadoVuelos != null) {this.listadoVuelos.setVisible(false);}
 		this.setContentPane(seleccionVuelo);
 		this.seleccionVuelo.setVisible(true);
 	}
@@ -57,19 +62,26 @@ public class Ventana extends JFrame {
 		if (this.login == null) {
 			this.login = new PantallaLogin(this);
 		}
-		this.principal.setVisible(false);
+		if (this.principal != null) {this.principal.setVisible(false);}
+		if (this.seleccionVuelo != null) {this.seleccionVuelo.setVisible(false);}
 		this.setContentPane(login);
 		this.login.setVisible(true);
-		this.login = null;
 	}
-	public void irAPantallaPrincipal( ) {
+	public void irAPantallaPrincipal() {
 		if(this.principal == null) {
 			this.principal = new PantallaPrincipal(this);
 		}
 		if (login != null) {this.login.setVisible(false);}
-		if (login != null) {this.registro.setVisible(false);}
+		if (registro != null) {this.registro.setVisible(false);}
 		this.setContentPane(principal);
 		this.principal.setVisible(true);
 	}
-
+	public void irAPantallaListadoVuelos() {
+		if(this.listadoVuelos == null) {
+			this.listadoVuelos = new PantallaListadoVuelos(this);
+		}
+		this.seleccionVuelo.setVisible(false);
+		this.setContentPane(listadoVuelos);
+		this.listadoVuelos.setVisible(true);
+	}
 }
