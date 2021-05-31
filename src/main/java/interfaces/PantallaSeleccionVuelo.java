@@ -1,6 +1,7 @@
 package interfaces;
 
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -25,6 +26,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import java.awt.FlowLayout;
+import javax.swing.JComboBox;
 
 public class PantallaSeleccionVuelo extends JPanel {
 	
@@ -44,6 +46,10 @@ public class PantallaSeleccionVuelo extends JPanel {
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.CENTER);
+		
+		final JComboBox<Vuelo> campoSeleccionReserva = new JComboBox<Vuelo>();
+		campoSeleccionReserva.setBounds(225, 209, 149, 22);
+		panel_1.add(campoSeleccionReserva);
 		
 		// Botones
 		
@@ -87,6 +93,33 @@ public class PantallaSeleccionVuelo extends JPanel {
 				}
 			}
 		});
+		
+		JButton botonEliminar = new JButton("Eliminar una reserva");
+		botonEliminar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Vuelo vueloSeleccionado =(Vuelo)campoSeleccionReserva.getSelectedItem();
+				campoSeleccionReserva.removeItem(vueloSeleccionado);
+				
+				try {
+					Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectoprog",
+							"root","ithinkaboutyou");
+					Statement smt = conexion.createStatement();
+					smt.execute("delete from Vuelo where aeropuertoOrigen='"+textFieldOrigen.getText()+"'");
+					
+					JOptionPane.showMessageDialog(ventana, "Datos eliminados","Reserva de vuelo eliminada",
+							 JOptionPane.YES_NO_CANCEL_OPTION);
+					
+					
+					smt.close();
+					conexion.close();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}});
+		botonEliminar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panel.add(botonEliminar);
 		botonSeleccion.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel.add(botonSeleccion);
 		
@@ -139,7 +172,13 @@ public class PantallaSeleccionVuelo extends JPanel {
 		textFieldFecha.setBounds(225, 163, 149, 20);
 		panel_1.add(textFieldFecha);
 		textFieldFecha.setColumns(10);
+		
+		
+		
+		JLabel etiquetaReserva = new JLabel("Vuelos reservados:");
+		etiquetaReserva.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		etiquetaReserva.setBounds(76, 210, 149, 14);
+		panel_1.add(etiquetaReserva);
 
 	}
-
 }
