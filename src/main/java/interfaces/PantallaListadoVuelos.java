@@ -19,10 +19,13 @@ import javax.swing.JTextArea;
 import clases.Vuelo;
 
 import java.awt.GridBagConstraints;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class PantallaListadoVuelos extends JPanel {
 
 	private Ventana ventana;
+	private JTable table;
 	
 	public PantallaListadoVuelos (Ventana v) {
 		this.ventana = v;
@@ -40,9 +43,21 @@ public class PantallaListadoVuelos extends JPanel {
 		etiquetaTitulo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panelTitulo.add(etiquetaTitulo);
 		
-		final JComboBox<Vuelo> comboBoxVuelos = new JComboBox<Vuelo>();
-		comboBoxVuelos.setBounds(139, 82, 171, 22);
-		panelCentral.add(comboBoxVuelos);
+		table = new JTable();
+		//select count(*) nv from vuelo where .....
+		Object [][] vuelos=new Object[nv][4];
+		//select * from vuelo where...
+		for(int i=0;i<nv;i++) {
+			//Sacar del resultset los datos del vuelo, y meter el de cada uno de ellos en una de las filas de vuelos.
+		}
+		table.setModel(new DefaultTableModel(
+			vuelos,
+			new String[] {
+				"Aerolínea", "Ciudad Origen", "Ciudad Destino", "Salida"
+			}
+		));
+		table.setBounds(39, 40, 367, 210);
+		panelCentral.add(table);
 		
 		JPanel panelBotones = new JPanel();
 		add(panelBotones, BorderLayout.SOUTH);
