@@ -13,6 +13,10 @@ public class PantallaPrincipal extends JPanel {
 	private Ventana ventana;
 	private final JButton botonSalir = new JButton("Salir");
 
+	/**
+	 * 
+	 * @param v
+	 */
 	public PantallaPrincipal(Ventana v) {
 		ventana = v;
 		setLayout(new BorderLayout(0, 0));

@@ -35,7 +35,10 @@ public class PantallaRegistro extends JPanel {
 	private JTextField textFieldDni;
 	private JTextField textFieldDireccion;
 
-
+	/**
+	 * 
+	 * @param v
+	 */
 	public PantallaRegistro(Ventana v) {
 		ventana = v;
 		setLayout(new BorderLayout(0, 0));

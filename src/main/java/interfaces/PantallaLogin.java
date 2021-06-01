@@ -33,7 +33,10 @@ public class PantallaLogin extends JPanel {
 	private JPasswordField passwordField;
 	private Ventana ventana;
 
-
+	/**
+	 * 
+	 * @param v
+	 */
 	public PantallaLogin(Ventana v) {
 		ventana = v;
 		setLayout(new BorderLayout(0, 0));

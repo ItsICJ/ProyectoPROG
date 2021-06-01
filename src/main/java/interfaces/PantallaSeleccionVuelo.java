@@ -36,7 +36,10 @@ public class PantallaSeleccionVuelo extends JPanel {
 	private JTextField textFieldOrigen;
 	private JTextField textFieldDestino;
 
-
+	/**
+	 * 
+	 * @param v
+	 */
 	public PantallaSeleccionVuelo(Ventana v) {
 		ventana = v;
 		setLayout(new BorderLayout(0, 0));
