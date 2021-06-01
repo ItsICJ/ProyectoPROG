@@ -6,26 +6,30 @@
 package clases;
 
 /**
- *
- * @author Ivan
+ * Esta clase recoge la única variable que heredan varias de las otras clases
+ * @author Iván Carrillo
  */
 public class EntidadConNombre {
+	
     private String nombre;
 
+    /**
+     * @param nombre:ya sea de un avión, cliente, etc
+     */
     public EntidadConNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+    /**
+     * @return nombre
+     */
     public String getNombre() {
         return nombre;
     }
-
+    /**
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    @Override
-    public String toString() {
-        return "EntidadConNombre{" + "nombre=" + nombre + '}';
-    }
 }
