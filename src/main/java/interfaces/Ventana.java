@@ -10,7 +10,12 @@ import javax.swing.JFrame;
 
 import clases.Vuelo;
 
-
+/**
+ * Clase principal de interfaces en la que quedan recogidas las variables de todas las pantallas 
+ * y funciones para navegar de una pantalla a otra
+ * @author Iván Carrillo
+ *
+ */
 public class Ventana extends JFrame {
 
 	private PantallaLogin login;
@@ -19,8 +24,9 @@ public class Ventana extends JFrame {
 	private PantallaPrincipal principal;
 	private PantallaListadoVuelos listadoVuelos;
 	protected Vuelo vuelo;
+	
 	/**
-	 * Create the frame.
+	 * 
 	 */
 	public Ventana() {
 		this.principal = new PantallaPrincipal(this);
@@ -39,7 +45,9 @@ public class Ventana extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
-	
+	/**
+	 * 
+	 */
 	public void irASeleccionVuelo() {
 		if (this.seleccionVuelo == null) {
 			this.seleccionVuelo = new PantallaSeleccionVuelo(this);
@@ -50,6 +58,9 @@ public class Ventana extends JFrame {
 		this.setContentPane(seleccionVuelo);
 		this.seleccionVuelo.setVisible(true);
 	}
+	/**
+	 * 
+	 */
 	public void irARegistro() {
 		if (this.registro == null) {
 			this.registro = new PantallaRegistro(this);
@@ -58,6 +69,9 @@ public class Ventana extends JFrame {
 		this.setContentPane(registro);
 		this.registro.setVisible(true);
 	}
+	/**
+	 * 
+	 */
 	public void irALogin() {
 		if (this.login == null) {
 			this.login = new PantallaLogin(this);
@@ -67,6 +81,9 @@ public class Ventana extends JFrame {
 		this.setContentPane(login);
 		this.login.setVisible(true);
 	}
+	/**
+	 * 
+	 */
 	public void irAPantallaPrincipal() {
 		if(this.principal == null) {
 			this.principal = new PantallaPrincipal(this);
@@ -76,6 +93,9 @@ public class Ventana extends JFrame {
 		this.setContentPane(principal);
 		this.principal.setVisible(true);
 	}
+	/**
+	 * 
+	 */
 	public void irAPantallaListadoVuelos() {
 		if(this.listadoVuelos == null) {
 			this.listadoVuelos = new PantallaListadoVuelos(this);
