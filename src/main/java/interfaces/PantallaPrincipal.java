@@ -1,11 +1,18 @@
 package interfaces;
 
 import javax.swing.JPanel;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 
 public class PantallaPrincipal extends JPanel {
@@ -19,6 +26,7 @@ public class PantallaPrincipal extends JPanel {
 	 */
 	public PantallaPrincipal(Ventana v) {
 		ventana = v;
+		
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -27,6 +35,7 @@ public class PantallaPrincipal extends JPanel {
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.CENTER);
+		panel_1.setBackground(Color.DARK_GRAY);
 		
 		// Botones
 		
@@ -62,6 +71,11 @@ public class PantallaPrincipal extends JPanel {
 		panel.add(botonRegistro);
 		botonRegistro.setBackground(Color.yellow);
 		
+		
+	}
+
+	private void setContentPane(JLabel jLabel) {
+		// TODO Auto-generated method stub
 		
 	}
 

@@ -1,12 +1,23 @@
 package interfaces;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Insets;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 import clases.Vuelo;
 
@@ -23,24 +34,23 @@ public class Ventana extends JFrame {
 	private PantallaSeleccionVuelo seleccionVuelo;
 	private PantallaPrincipal principal;
 	private PantallaListadoVuelos listadoVuelos;
-	protected Vuelo vuelo;
 	
 	/**
 	 * 
 	 */
 	public Ventana() {
-		this.principal = new PantallaPrincipal(this);
+		this.principal = new PantallaPrincipal(this);	
 		this.setSize(450,400);
 		this.setLocation(600,300);
+		this.setContentPane(this.principal);
+		this.setTitle("Sistema de Reserva de Vuelos");
 		try {
 			Image img = ImageIO.read(new File("rose.png"));
-			this.setIconImage(img);
+			this.setIconImage(img); // Con todo esto colocamos un icono en la ventana.
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.setContentPane(this.principal);
-		this.setTitle("Sistema de Reserva de Vuelos");
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -104,4 +114,5 @@ public class Ventana extends JFrame {
 		this.setContentPane(listadoVuelos);
 		this.listadoVuelos.setVisible(true);
 	}
+
 }
