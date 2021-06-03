@@ -39,7 +39,7 @@ public class Ventana extends JFrame {
 	private PantallaListadoVuelos listadoVuelos;
 	
 	/**
-	 * 
+	 * Define cómo será la pantalla
 	 */
 	public Ventana() {
 		this.principal = new PantallaPrincipal(this);	

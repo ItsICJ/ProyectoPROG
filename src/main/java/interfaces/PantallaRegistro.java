@@ -157,7 +157,7 @@ public class PantallaRegistro extends JPanel {
 				ventana.irAPantallaPrincipal();
 			}
 		});
-		botonAtras.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		botonAtras.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panel.add(botonAtras);
 		
 		JButton botonRegistro = new JButton("Registro");
@@ -198,7 +198,7 @@ public class PantallaRegistro extends JPanel {
 				}
 			}
 		});
-		botonRegistro.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		botonRegistro.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panel.add(botonRegistro);
 		
 

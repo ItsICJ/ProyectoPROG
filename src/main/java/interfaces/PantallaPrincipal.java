@@ -56,7 +56,7 @@ public class PantallaPrincipal extends JPanel {
 				System.exit(0);
 			}
 		});
-		botonSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		botonSalir.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panel.add(botonSalir);
 		botonSalir.setBackground(Color.red);
 		
@@ -67,7 +67,7 @@ public class PantallaPrincipal extends JPanel {
 				ventana.irALogin();
 			}
 		});
-		botonLogin.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		botonLogin.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panel.add(botonLogin);
 		botonLogin.setBackground(Color.cyan);
 		
@@ -78,7 +78,7 @@ public class PantallaPrincipal extends JPanel {
 				ventana.irARegistro();
 			}
 		});
-		botonRegistro.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		botonRegistro.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panel.add(botonRegistro);
 		botonRegistro.setBackground(Color.yellow);
 		

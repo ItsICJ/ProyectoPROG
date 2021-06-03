@@ -3,6 +3,8 @@ package interfaces;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -27,6 +29,7 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import java.awt.FlowLayout;
 import javax.swing.JComboBox;
+import javax.swing.ImageIcon;
 
 public class PantallaSeleccionVuelo extends JPanel {
 	
@@ -46,6 +49,7 @@ public class PantallaSeleccionVuelo extends JPanel {
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.SOUTH);
+		panel.setBackground(Color.white);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.CENTER);
@@ -57,20 +61,21 @@ public class PantallaSeleccionVuelo extends JPanel {
 		// Botones
 		
 		JButton botonAtras = new JButton("Atrás");
+		botonAtras.setBackground(Color.red);
 		botonAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ventana.irALogin();
 			}
 		});
-		botonAtras.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		botonAtras.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panel.add(botonAtras);
 		
 		JButton botonSeleccion = new JButton("Seleccionar");
+		botonSeleccion.setBackground(Color.green);
 		botonSeleccion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Random ran = new Random();
 				if (textFieldOrigen.getText().isBlank()) {
 					JOptionPane.showMessageDialog(ventana, "Debe indicar la ciudad de origen","No se pudo cargar resultados",JOptionPane.ERROR_MESSAGE);
 				} else {// Hacer consulta de vuelos
@@ -84,7 +89,7 @@ public class PantallaSeleccionVuelo extends JPanel {
 						if (consultaVuelo.next()) {
 							ventana.irAPantallaListadoVuelos(textFieldOrigen.getText());
 						} else {
-							JOptionPane.showMessageDialog(ventana, "Datos incorrectos","no se pudo mostrar el listado",
+							JOptionPane.showMessageDialog(ventana, "Datos incorrectos","No se pudo mostrar el listado",
 									 JOptionPane.ERROR_MESSAGE);
 						}
 						smt.close();
@@ -98,6 +103,7 @@ public class PantallaSeleccionVuelo extends JPanel {
 		});
 		
 		JButton botonEliminar = new JButton("Eliminar una reserva");
+		botonEliminar.setBackground(Color.yellow);
 		botonEliminar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -121,16 +127,16 @@ public class PantallaSeleccionVuelo extends JPanel {
 					e1.printStackTrace();
 				}
 			}});
-		botonEliminar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		botonEliminar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panel.add(botonEliminar);
-		botonSeleccion.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		botonSeleccion.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panel.add(botonSeleccion);
 		
 		// Etiquetas
 		
 		JLabel eiquetaTitulo = new JLabel("Selección de vuelo");
 		eiquetaTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		eiquetaTitulo.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		eiquetaTitulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		add(eiquetaTitulo, BorderLayout.NORTH);
 		panel_1.setLayout(null);
 		
@@ -182,6 +188,11 @@ public class PantallaSeleccionVuelo extends JPanel {
 		etiquetaReserva.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		etiquetaReserva.setBounds(76, 210, 149, 14);
 		panel_1.add(etiquetaReserva);
+		
+		JLabel etiquetaFondo = new JLabel("New label");
+		etiquetaFondo.setIcon(new ImageIcon(".\\login.jpg"));
+		etiquetaFondo.setBounds(0, 0, 450, 279);
+		panel_1.add(etiquetaFondo);
 
 	}
 }

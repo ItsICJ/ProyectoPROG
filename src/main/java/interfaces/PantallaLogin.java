@@ -99,7 +99,7 @@ public class PantallaLogin extends JPanel {
 				ventana.irAPantallaPrincipal();
 			}
 		});
-		botonSalir.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		botonSalir.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panelBotones.add(botonSalir);
 		
 		JButton botonIniciar = new JButton("Entrar");
@@ -112,7 +112,6 @@ public class PantallaLogin extends JPanel {
 							 JOptionPane.ERROR_MESSAGE);
 				 } else {//Se puede iniciar sesión
 					 try {
-						 
 						 
 						 Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectoprog",
 								 "root","ithinkaboutyou");
@@ -138,7 +137,7 @@ public class PantallaLogin extends JPanel {
 				 }
 			}
 		});
-		botonIniciar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		botonIniciar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panelBotones.add(botonIniciar);
 		
 		

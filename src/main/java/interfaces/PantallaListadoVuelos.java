@@ -32,6 +32,8 @@ import java.awt.GridBagConstraints;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class PantallaListadoVuelos extends JPanel {
 
@@ -52,7 +54,7 @@ public class PantallaListadoVuelos extends JPanel {
 		panelCentral.add(panelTitulo);
 		
 		JLabel etiquetaTitulo = new JLabel("Listado de Vuelos:");
-		etiquetaTitulo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		etiquetaTitulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panelTitulo.add(etiquetaTitulo);
 		//select count(*) nv from vuelo where .....
 		Connection conexion;
@@ -67,15 +69,18 @@ public class PantallaListadoVuelos extends JPanel {
 			Object [][] vuelos=new Object[5][4];
 			
 			byte cont = 0;
+			LocalDateTime tiempo = null;
 			while(consultaVuelo.next()) {
-				Vuelo vuelo = new Vuelo(new Aerolinea(consultaVuelo.getString("aerolinea")), consultaVuelo.getDate("fecha").toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(), 
-						consultaVuelo.getByte("codVuelo"), new Aeropuerto(consultaVuelo.getString("aeropuertoOrigen")),
+				Vuelo vuelo = new Vuelo(new Aerolinea(consultaVuelo.getString("aerolinea")), 
+						tiempo, 
+						consultaVuelo.getInt("codVuelo"), new Aeropuerto(consultaVuelo.getString("aeropuertoOrigen")),
 						new Aeropuerto(consultaVuelo.getString("aeropuertoDestino")), null);
 				vuelos[cont][0] = vuelo.getAerolinea();
 				vuelos[cont][1] = vuelo.getFecha();
 				vuelos[cont][2] = vuelo.getAeropuertoOrigen();
 				vuelos[cont][3] = vuelo.getAeropuertoDestino();
 				cont ++;
+				ResultSet rs = smt.executeQuery(consulta);
 			}
 			
 			smt.close();
@@ -100,20 +105,27 @@ public class PantallaListadoVuelos extends JPanel {
 		
 		scrollPane.setViewportView(table);
 		
+		JLabel etiquetaFondo = new JLabel("New label");
+		etiquetaFondo.setIcon(new ImageIcon(".\\login.jpg"));
+		etiquetaFondo.setBounds(0, 26, 450, 272);
+		panelCentral.add(etiquetaFondo);
+		
 		JPanel panelBotones = new JPanel();
 		add(panelBotones, BorderLayout.SOUTH);
 		
 		JButton botonAtras = new JButton("Atrás");
+		botonAtras.setBackground(Color.RED);
 		botonAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ventana.irASeleccionVuelo();
 			}
 		});
-		botonAtras.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		botonAtras.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panelBotones.add(botonAtras);
 		
 		JButton botonReservar = new JButton("Reservar");
+		botonReservar.setBackground(Color.GREEN);
 		botonReservar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -123,7 +135,7 @@ public class PantallaListadoVuelos extends JPanel {
 				ventana.irASeleccionVuelo();
 			}
 		});
-		botonReservar.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		botonReservar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panelBotones.add(botonReservar);
 		
 
