@@ -80,7 +80,6 @@ public class PantallaListadoVuelos extends JPanel {
 				vuelos[cont][2] = vuelo.getAeropuertoOrigen();
 				vuelos[cont][3] = vuelo.getAeropuertoDestino();
 				cont ++;
-				ResultSet rs = smt.executeQuery(consulta);
 			}
 			
 			smt.close();

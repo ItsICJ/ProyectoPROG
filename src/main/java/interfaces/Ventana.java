@@ -14,6 +14,11 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.print.attribute.standard.Media;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -48,6 +53,8 @@ public class Ventana extends JFrame {
 		this.setContentPane(this.principal);
 		this.setTitle("Sistema de Reserva de Vuelos");
 		this.setMinimumSize(new Dimension(450, 400));
+		this.setResizable(false);
+		
 		try {
 			Image img = ImageIO.read(new File("rose.png"));
 			this.setIconImage(img); // Con todo esto colocamos un icono en la ventana.
@@ -56,13 +63,12 @@ public class Ventana extends JFrame {
 			e.printStackTrace();
 		}
 		
-		
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
 	/**
-	 * 
+	 * Esta función permite que se pueda ir a la pantalla de selección de vuelo a través de los botones de la interfaz
 	 */
 	public void irASeleccionVuelo() {
 		if (this.seleccionVuelo == null) {
@@ -75,7 +81,7 @@ public class Ventana extends JFrame {
 		this.seleccionVuelo.setVisible(true);
 	}
 	/**
-	 * 
+	 * Esta función permite que se pueda ir a la pantalla de registro a través de los botones de la interfaz
 	 */
 	public void irARegistro() {
 		if (this.registro == null) {
@@ -86,7 +92,7 @@ public class Ventana extends JFrame {
 		this.registro.setVisible(true);
 	}
 	/**
-	 * 
+	 * Esta función permite que se pueda ir a la pantalla de inicio de sesión a través de los botones de la interfaz
 	 */
 	public void irALogin() {
 		if (this.login == null) {
@@ -98,7 +104,7 @@ public class Ventana extends JFrame {
 		this.login.setVisible(true);
 	}
 	/**
-	 * 
+	 * Esta función permite que se pueda ir a la pantalla principal del programa a través de los botones de la interfaz
 	 */
 	public void irAPantallaPrincipal() {
 		if(this.principal == null) {
@@ -110,7 +116,7 @@ public class Ventana extends JFrame {
 		this.principal.setVisible(true);
 	}
 	/**
-	 * 
+	 * Esta función permite que se pueda ir a la pantalla del listado de vuelos a través de los botones de la interfaz
 	 */
 	public void irAPantallaListadoVuelos(String origen) {
 		if(this.listadoVuelos == null) {
@@ -121,4 +127,7 @@ public class Ventana extends JFrame {
 		this.listadoVuelos.setVisible(true);
 	}
 
+
 }
+
+
