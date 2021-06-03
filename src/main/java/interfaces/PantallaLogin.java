@@ -17,6 +17,7 @@ import excepciones.EmailIncorrectoException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import java.awt.GridBagLayout;
+import java.awt.HeadlessException;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
@@ -32,6 +33,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.ImageIcon;
 
+/**
+ * Esta clase permite visualizar una pantalla en la que podremos ver un formulario en la que introducir datos del anterior registro
+ * para poder acceder a la siguiente pantalla
+ * @author Iván Carrillo
+ *
+ */
 public class PantallaLogin extends JPanel {
 	
 	private JTextField textFieldEmail;
@@ -39,10 +46,9 @@ public class PantallaLogin extends JPanel {
 	private Ventana ventana;
 
 	/**
-	 * 
 	 * @param v
 	 */
-	public PantallaLogin(Ventana v) {
+	public PantallaLogin(Ventana v)  {
 		ventana = v;
 		setLayout(new BorderLayout(0, 0));
 		
@@ -105,42 +111,56 @@ public class PantallaLogin extends JPanel {
 		JButton botonIniciar = new JButton("Entrar");
 		botonIniciar.setBackground(Color.green);
 		botonIniciar.addMouseListener(new MouseAdapter() {
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				 if (textFieldEmail.getText().isBlank()||passwordField.getPassword().toString().isBlank()) {
 					 JOptionPane.showMessageDialog(ventana, "Todos los campos deben estar llenos","No se pudo iniciar sesión",
 							 JOptionPane.ERROR_MESSAGE);
-				 } else {//Se puede iniciar sesión
-					 try {
-						 
-						 Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectoprog",
-								 "root","ithinkaboutyou");
-						 String consulta = "select nombre,apellido1 from Cliente where email = '"+textFieldEmail.getText()+"'"
-							 		+ " and contraseña = '"+new String (passwordField.getPassword())+"'";
-						 Statement smt = conexion.createStatement();
+				 } else try {
+						if (emailCorrecto()){
 						
-						 ResultSet consultaUsuario =smt.executeQuery(consulta);
-						 if(consultaUsuario.next()) {
-						 JOptionPane.showMessageDialog(ventana, "Inicio de sesión realizado","¡Hola de nuevo!",
-								 JOptionPane.YES_NO_CANCEL_OPTION);
-						 ventana.irASeleccionVuelo();
-						 } else {
-							 JOptionPane.showMessageDialog(ventana, "Usuario y/o contraseña incorrectos","No se pudo iniciar sesión",JOptionPane.ERROR_MESSAGE);
+						 } else {//Se puede iniciar sesión
+						 
+							 try {
+								 
+								 Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectoprog",
+										 "root","ithinkaboutyou");
+								 String consulta = "select nombre,apellido1 from Cliente where email = '"+textFieldEmail.getText()+"'"
+									 		+ " and contraseña = '"+new String (passwordField.getPassword())+"'";
+								 Statement smt = conexion.createStatement();
+								
+								 ResultSet consultaUsuario =smt.executeQuery(consulta);
+								 if(consultaUsuario.next()) {
+								 JOptionPane.showMessageDialog(ventana, "Inicio de sesión realizado","¡Hola de nuevo!",
+										 JOptionPane.YES_NO_CANCEL_OPTION);
+								 ventana.irASeleccionVuelo();
+								 } else {
+									 JOptionPane.showMessageDialog(ventana, "Contraseña incorrecta","No se pudo iniciar sesión",JOptionPane.ERROR_MESSAGE);
+								 }
+								 
+								 smt.close();
+								 conexion.close();
+								 
+							 } catch (SQLException e1) {
+								 JOptionPane.showMessageDialog(ventana, e1.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+							 } 
 						 }
-						 
-						 smt.close();
-						 conexion.close();
-						 
-					 } catch (SQLException e1) {
-						 JOptionPane.showMessageDialog(ventana, e1.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-					 } 
-				 }
+					} catch (HeadlessException | EmailIncorrectoException e1) {
+						JOptionPane.showMessageDialog(ventana, e1.getMessage(),"Pruebe a escribirlo correctamente",JOptionPane.ERROR_MESSAGE);
+					} 
 			}
 		});
 		botonIniciar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panelBotones.add(botonIniciar);
 		
-		
+	}
+	public boolean emailCorrecto() throws EmailIncorrectoException{
+		if (!textFieldEmail.getText().contains("@")){
+			 throw new EmailIncorrectoException("Correo electrónico incorrecto");
+		 } else {
+			 return false;
+		 }
 	}
 
 }

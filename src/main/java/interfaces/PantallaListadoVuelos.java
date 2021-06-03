@@ -35,6 +35,11 @@ import javax.swing.JScrollPane;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 
+/**
+ * Esta clase permite visualizar una pantalla en la que podremos ver un listado de vuelos a elegir (incompleto)
+ * @author Iván Carrillo 
+ *
+ */
 public class PantallaListadoVuelos extends JPanel {
 
 	private Ventana ventana;
@@ -56,12 +61,13 @@ public class PantallaListadoVuelos extends JPanel {
 		JLabel etiquetaTitulo = new JLabel("Listado de Vuelos:");
 		etiquetaTitulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panelTitulo.add(etiquetaTitulo);
+		
 		//select count(*) nv from vuelo where .....
-		Connection conexion;
+		 
 		try {
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectoprog","root","ithinkaboutyou");
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectoprog","root","ithinkaboutyou");
 			String consulta = "select aerolinea, fecha, aeropuertoOrigen,aeropuertoDestino from Vuelo where aeropuertoOrigen = '"+origen+"'";
-			String consulta2 = "se";
+			
 			Statement smt = conexion.createStatement();
 			ResultSet consultaVuelo = smt.executeQuery(consulta);
 			
@@ -69,10 +75,8 @@ public class PantallaListadoVuelos extends JPanel {
 			Object [][] vuelos=new Object[5][4];
 			
 			byte cont = 0;
-			LocalDateTime tiempo = null;
 			while(consultaVuelo.next()) {
-				Vuelo vuelo = new Vuelo(new Aerolinea(consultaVuelo.getString("aerolinea")), 
-						tiempo, 
+				Vuelo vuelo = new Vuelo(new Aerolinea(consultaVuelo.getString("aerolinea")),null, 
 						consultaVuelo.getInt("codVuelo"), new Aeropuerto(consultaVuelo.getString("aeropuertoOrigen")),
 						new Aeropuerto(consultaVuelo.getString("aeropuertoDestino")), null);
 				vuelos[cont][0] = vuelo.getAerolinea();

@@ -31,6 +31,11 @@ import java.awt.FlowLayout;
 import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
 
+/**
+ * Esta clase permite visualizar una pantalla en la que podremos ver un formulario para elegir el tipo de vuelo que queremos
+ * @author Iván Carrillo
+ *
+ */
 public class PantallaSeleccionVuelo extends JPanel {
 	
 	private Ventana ventana;

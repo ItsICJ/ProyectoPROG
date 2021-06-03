@@ -24,7 +24,6 @@ public class MainPROG {
      */
     public static void main(String[] args) {
     	
-
     	Ventana miVentana=new Ventana();
         try {
             

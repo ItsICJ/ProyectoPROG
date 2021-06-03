@@ -23,7 +23,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.ImageIcon;
 
-
+/**
+ * Esta clase permite visualizar una pantalla en la que podremos ver un formulario de registro al programa
+ * @author Iván Carrillo
+ *
+ */
 public class PantallaRegistro extends JPanel {
 	
 	private JTextField textFieldNombre;
@@ -37,7 +41,6 @@ public class PantallaRegistro extends JPanel {
 	private JTextField textFieldDireccion;
 
 	/**
-	 * 
 	 * @param v
 	 */
 	public PantallaRegistro(Ventana v) {
