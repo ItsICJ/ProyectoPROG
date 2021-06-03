@@ -1,6 +1,7 @@
 package interfaces;
 
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 
@@ -11,6 +12,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import clases.Cliente;
+import excepciones.EmailVacioException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -28,6 +30,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.ImageIcon;
 
 public class PantallaLogin extends JPanel {
 	
@@ -45,11 +48,13 @@ public class PantallaLogin extends JPanel {
 		
 		JPanel panelBotones = new JPanel();
 		add(panelBotones, BorderLayout.SOUTH);
-		panelBotones.setBackground(Color.darkGray);
+		panelBotones.setBackground(Color.white);
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
+		
+		
 		
 		// Etiquetas
 		
@@ -59,13 +64,13 @@ public class PantallaLogin extends JPanel {
 		add(etiquetaTitulo, BorderLayout.NORTH);
 		
 		JLabel etiquetaEmail = new JLabel("Correo electrónico:");
-		etiquetaEmail.setBounds(155, 60, 129, 19);
-		etiquetaEmail.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		etiquetaEmail.setBounds(155, 60, 165, 19);
+		etiquetaEmail.setFont(new Font("Tahoma", Font.BOLD, 15));
 		panel.add(etiquetaEmail);
 		
 		JLabel etiquetaContraseña = new JLabel("Contraseña:");
-		etiquetaContraseña.setBounds(180, 139, 79, 19);
-		etiquetaContraseña.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		etiquetaContraseña.setBounds(180, 139, 110, 19);
+		etiquetaContraseña.setFont(new Font("Tahoma", Font.BOLD, 15));
 		panel.add(etiquetaContraseña);
 		
 		// Campos
@@ -78,6 +83,11 @@ public class PantallaLogin extends JPanel {
 		textFieldEmail.setBounds(120, 84, 200, 20);
 		panel.add(textFieldEmail);
 		textFieldEmail.setColumns(10);
+		
+		JLabel etiquetaFondo = new JLabel("New label");
+		etiquetaFondo.setIcon(new ImageIcon(".\\login.jpg"));
+		etiquetaFondo.setBounds(0, 0, 450, 278);
+		panel.add(etiquetaFondo);
 		
 		// Botones
 		
@@ -123,6 +133,8 @@ public class PantallaLogin extends JPanel {
 						 conexion.close();
 						 
 					 } catch (SQLException e1) {
+						 JOptionPane.showMessageDialog(ventana, e1.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+					 } catch (EmailVacioException e1) {
 						 JOptionPane.showMessageDialog(ventana, e1.getMessage(),"No se pudo iniciar sesión",JOptionPane.ERROR_MESSAGE);
 					 }
 				 }

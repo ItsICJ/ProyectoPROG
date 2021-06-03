@@ -1,6 +1,7 @@
 package interfaces;
 
 import java.awt.Color;
+
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -12,12 +13,14 @@ import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
+import javax.print.attribute.standard.Media;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+
 
 import clases.Vuelo;
 
@@ -44,6 +47,7 @@ public class Ventana extends JFrame {
 		this.setLocation(600,300);
 		this.setContentPane(this.principal);
 		this.setTitle("Sistema de Reserva de Vuelos");
+		this.setMinimumSize(new Dimension(450, 400));
 		try {
 			Image img = ImageIO.read(new File("rose.png"));
 			this.setIconImage(img); // Con todo esto colocamos un icono en la ventana.
@@ -51,6 +55,8 @@ public class Ventana extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

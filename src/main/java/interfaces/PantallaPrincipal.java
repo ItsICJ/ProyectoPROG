@@ -9,11 +9,13 @@ import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 
 public class PantallaPrincipal extends JPanel {
 	
@@ -29,6 +31,9 @@ public class PantallaPrincipal extends JPanel {
 		
 		setLayout(new BorderLayout(0, 0));
 		
+		
+		
+		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.SOUTH);
 		panel.setBackground(Color.DARK_GRAY);
@@ -36,6 +41,12 @@ public class PantallaPrincipal extends JPanel {
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.CENTER);
 		panel_1.setBackground(Color.DARK_GRAY);
+		panel_1.setLayout(null);
+		
+		JLabel etiquetaFondo = new JLabel("New label");
+		etiquetaFondo.setIcon(new ImageIcon(".\\fondo.jpg"));
+		etiquetaFondo.setBounds(0, 0, 450, 303);
+		panel_1.add(etiquetaFondo);
 		
 		// Botones
 		
@@ -78,5 +89,4 @@ public class PantallaPrincipal extends JPanel {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

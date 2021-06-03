@@ -21,6 +21,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.ImageIcon;
 
 
 public class PantallaRegistro extends JPanel {
@@ -45,7 +46,7 @@ public class PantallaRegistro extends JPanel {
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.SOUTH);
-		panel.setBackground(Color.DARK_GRAY);
+		panel.setBackground(Color.white);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.CENTER);
@@ -140,6 +141,11 @@ public class PantallaRegistro extends JPanel {
 		textFieldDireccion.setBounds(255, 201, 159, 20);
 		panel_1.add(textFieldDireccion);
 		textFieldDireccion.setColumns(10);
+		
+		JLabel etiquetaFondo = new JLabel("New label");
+		etiquetaFondo.setIcon(new ImageIcon(".\\login.jpg"));
+		etiquetaFondo.setBounds(0, 0, 450, 273);
+		panel_1.add(etiquetaFondo);
 		
 		// Botones
 		
