@@ -32,6 +32,9 @@ public class Aerolinea extends EntidadConNombre{
 		this.aviones = aviones;
 		this.vuelos = vuelos;
 	}
+	public Aerolinea(String nombre) {
+		super(nombre);
+	}
 	/**
 	 * @return asientoLibre: true si está libre y false si está ocupado
 	 */

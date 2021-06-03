@@ -12,7 +12,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import clases.Cliente;
-import excepciones.EmailVacioException;
+import excepciones.EmailIncorrectoException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -134,9 +134,7 @@ public class PantallaLogin extends JPanel {
 						 
 					 } catch (SQLException e1) {
 						 JOptionPane.showMessageDialog(ventana, e1.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-					 } catch (EmailVacioException e1) {
-						 JOptionPane.showMessageDialog(ventana, e1.getMessage(),"No se pudo iniciar sesión",JOptionPane.ERROR_MESSAGE);
-					 }
+					 } 
 				 }
 			}
 		});

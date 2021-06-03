@@ -18,9 +18,9 @@ public class Aeropuerto extends EntidadConNombre{
      * @param ciudad: nombre del lugar en el que se encuentra el aeropuerto
      * @param nombre: nombre del aeropuerto
      */
-    public Aeropuerto(String ciudad, String nombre) {
+    public Aeropuerto(String nombre) {
         super(nombre);
-        this.ciudad = ciudad;
+
     }
     /**
      * @return ciudad: nombre de la ciudad del aeropuerto

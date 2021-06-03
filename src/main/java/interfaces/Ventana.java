@@ -112,9 +112,9 @@ public class Ventana extends JFrame {
 	/**
 	 * 
 	 */
-	public void irAPantallaListadoVuelos() {
+	public void irAPantallaListadoVuelos(String origen) {
 		if(this.listadoVuelos == null) {
-			this.listadoVuelos = new PantallaListadoVuelos(this);
+			this.listadoVuelos = new PantallaListadoVuelos(this,origen);
 		}
 		this.seleccionVuelo.setVisible(false);
 		this.setContentPane(listadoVuelos);

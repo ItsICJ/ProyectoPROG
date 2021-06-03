@@ -44,7 +44,7 @@ create table Aerolinea_aavv (
 );
 create table Vuelo (
 	aerolinea varchar(25),
-    fecha date,
+    fecha datetime,
     codVuelo int primary key,
     aeropuertoOrigen varchar(25),
     aeropuertoDestino varchar(25),

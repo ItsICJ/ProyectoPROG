@@ -82,7 +82,7 @@ public class PantallaSeleccionVuelo extends JPanel {
 						
 						ResultSet consultaVuelo = smt.executeQuery(consulta);
 						if (consultaVuelo.next()) {
-							ventana.irAPantallaListadoVuelos();
+							ventana.irAPantallaListadoVuelos(textFieldOrigen.getText());
 						} else {
 							JOptionPane.showMessageDialog(ventana, "Datos incorrectos","no se pudo mostrar el listado",
 									 JOptionPane.ERROR_MESSAGE);
